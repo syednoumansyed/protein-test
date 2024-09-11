@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3Dmol.js PDB Viewer</title>
+    <script src="https://3dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+</head>
+<body>
+    <div id="viewer" style="width: 100%; height: 100vh;"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let viewer = $3Dmol.createViewer("viewer", {
+                defaultcolors: $3Dmol.rasmolElementColors,
+                pan: true,
+                zoom: false,
+                backgroundColor: 'white'
+            });
+
+            viewer.addModelFromUrl("https://raw.githubusercontent.com/syednoumansyed/protein-test/main/1HHO%20(1).pdb", "pdb", function() {
+                viewer.setStyle({}, {cartoon: {color: 'spectrum'}});
+                viewer.zoomTo();
+                viewer.render();
+
+                viewer.setRotation(true);
+            });
+
+            viewer.setZoomLimits(1.0, 1.0);
+            viewer.setMouseBehavior({left: 'pan', middle: 'zoom', right: 'rotate'});
+        });
+    </script>
+</body>
+</html>
 
